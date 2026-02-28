@@ -1,0 +1,12 @@
+# Requirements for Bubloo_AI
+# Please verify package names/versions and pin versions as needed.
+streamlit
+sympy
+google-generative-ai
+streamlit-google-auth
+python-dotenv
+requests
+beautifulsoup4
+# Optional / commonly required google auth libs
+google-auth
+google-auth-oauthlib

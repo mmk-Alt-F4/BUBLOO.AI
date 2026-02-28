@@ -1,0 +1,13 @@
+Organization: Bubloo Scientist
+Website: https://www.bublooscientist.com
+Contact Email: bublooscientist2023@gmail.com
+
+Executive Team:
+- Abdur Rehman Siddiqui: CEO
+- Ayaan Hassan Khan: Web Developer
+- Saim Ahmed: Social Media Manager
+- Sadaat Furqan: Marketer
+- Muhammad Mustafa Khan: Lead Designer
+- Muhammad Huzaifa Khan: Web Designer
+
+Mission: Your Advanced AI Research Companion.

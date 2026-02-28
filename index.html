@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Registration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- App Container (Hidden by default) -->
+<div class="app-container" id="app-view">
+    <iframe src="http://localhost:8501" title="Bubloo AI Assistant"></iframe>
+</div>
+
+<div class="container" id="login-view">
+    <div class="form-box">
+        <h2>Register</h2>
+        <input type="email" id="reg-email" placeholder="Email">
+        <input type="password" id="reg-password" placeholder="Password">
+        <button onclick="register()">Sign Up</button>
+        <p id="reg-message"></p>
+    </div>
+
+    <div class="form-box">
+        <h2>Login</h2>
+        <input type="email" id="login-email" placeholder="Email">
+        <input type="password" id="login-password" placeholder="Password">
+        <button onclick="login()">Log In</button>
+        <p id="login-message"></p>
+    </div>
+</div>
+
+<script>
+    async function register() {
+        const email = document.getElementById('reg-email').value;
+        const password = document.getElementById('reg-password').value;
+        const msg = document.getElementById('reg-message');
+
+        const res = await fetch('/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        msg.innerText = data.error || data.message;
+        msg.style.color = data.error ? 'red' : 'green';
+    }
+
+    async function login() {
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+        const msg = document.getElementById('login-message');
+
+        try {
+            const res = await fetch('/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+            const data = await res.json();
+            
+            if (res.ok) {
+                msg.innerText = "Login Successful! Loading App...";
+                msg.style.color = "green";
+                // Hide login, show app
+                setTimeout(() => {
+                    document.getElementById('login-view').classList.add('hidden');
+                    document.getElementById('app-view').style.display = 'block';
+                }, 1000);
+            } else {
+                msg.innerText = data.error || "Login failed";
+                msg.style.color = "red";
+            }
+        } catch (error) {
+            msg.innerText = "Network error";
+            msg.style.color = "red";
+        }
+    }
+</script>
+</body>
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        
+        if (data.error) {
+            msg.innerText = data.error;
+            msg.style.color = 'red';
+        } else {
+            msg.innerText = `Welcome back, ${data.user.email}!`;
+            msg.style.color = 'green';
+        }
+    }
+</script>
+
+</body>
+</html>
